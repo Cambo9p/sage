@@ -1,0 +1,4 @@
+{"level":"\u001b[34mINFO\u001b[0m","ts":1697795523.9030395,"caller":"comms/server.go:11","msg":"starting server"}
+{"level":"\u001b[34mINFO\u001b[0m","ts":1697795531.4446595,"caller":"comms/server.go:11","msg":"starting server"}
+{"level":"\u001b[34mINFO\u001b[0m","ts":1697797143.6893845,"caller":"comms/server.go:11","msg":"starting server"}
+{"level":"\u001b[34mINFO\u001b[0m","ts":1697797180.2881513,"caller":"comms/server.go:11","msg":"starting server"}
