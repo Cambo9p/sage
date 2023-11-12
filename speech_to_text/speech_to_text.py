@@ -1,23 +1,10 @@
 import speech_recognition as sr
-import logging
-
-# TODO: command line args to write output to a file or to a pipe
-
-# since this is the only python file we do logging for this file in here
-
-logging.basicConfig(
-    # level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] - %(message)s",
-    handlers=[
-        logging.FileHandler("./logging/app.log"),
-        logging.StreamHandler()
-    ]
-)
+import client
 
 
 def write_data(data):
     with open("user_output.txt", "a") as file:
-        logging.INFO(f"writing {data} to file")
+        print(f"data is {data}")
         file.write(data)
         file.close()
     return
@@ -36,7 +23,8 @@ def read_from_microphone():
                 print()
                 print("Did you say ", MyText)
                 print()
-                write_data(MyText)
+                # write_data(MyText)
+                client.send_to_server(MyText)
         except sr.UnknownValueError:
             print("google speech recognition couldnt understand audio")
         except sr.RequestError as e:
