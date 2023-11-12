@@ -2,3 +2,10 @@
 {"level":"\u001b[34mINFO\u001b[0m","ts":1697795531.4446595,"caller":"comms/server.go:11","msg":"starting server"}
 {"level":"\u001b[34mINFO\u001b[0m","ts":1697797143.6893845,"caller":"comms/server.go:11","msg":"starting server"}
 {"level":"\u001b[34mINFO\u001b[0m","ts":1697797180.2881513,"caller":"comms/server.go:11","msg":"starting server"}
+{"level":"\u001b[34mINFO\u001b[0m","ts":1699783417.2671893,"caller":"comms/server.go:37","msg":"starting server"}
+{"level":"\u001b[31mERROR\u001b[0m","ts":1699783417.2677553,"caller":"comms/info.go:22","msg":"failed to open file config.yml","stacktrace":"github.com/Cambo9p/sage/comms.getConfig\n\t/home/cam/sage/comms/info.go:22\ngithub.com/Cambo9p/sage/comms.StartServer\n\t/home/cam/sage/comms/server.go:39\nmain.main\n\t/home/cam/sage/main.go:6\nruntime.main\n\t/snap/go/10426/src/runtime/proc.go:267"}
+{"level":"\u001b[34mINFO\u001b[0m","ts":1699783417.2677867,"caller":"comms/server.go:43","msg":"running server on port :0 on "}
+{"level":"\u001b[34mINFO\u001b[0m","ts":1699783803.5604007,"caller":"comms/server.go:37","msg":"starting server"}
+{"level":"\u001b[31mERROR\u001b[0m","ts":1699783803.5604534,"caller":"comms/info.go:22","msg":"failed to open file config.yml","stacktrace":"github.com/Cambo9p/sage/comms.getConfig\n\t/home/cam/sage/comms/info.go:22\ngithub.com/Cambo9p/sage/comms.StartServer\n\t/home/cam/sage/comms/server.go:39\nmain.main\n\t/home/cam/sage/main.go:6\nruntime.main\n\t/snap/go/10426/src/runtime/proc.go:267"}
+{"level":"\u001b[34mINFO\u001b[0m","ts":1699783803.5604746,"caller":"comms/server.go:43","msg":"running server on port :0 on "}
+{"level":"\u001b[34mINFO\u001b[0m","ts":1699783813.382544,"caller":"comms/server.go:17","msg":"Serving 127.0.0.1:58490\n"}
