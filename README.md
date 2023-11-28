@@ -1,4 +1,4 @@
 # sage
 Speech Activated Guide and Expert
 
-A WIP 'siri for linux' 
+Sage is designed to be a voice assistant to voice automate tasks such as playing music
