@@ -12,7 +12,6 @@ import (
 
 var logger *zap.Logger
 
-// handles the stream of words
 func handleConnection(c net.Conn) {
 	logger.Info(fmt.Sprintf("Serving %s\n", c.RemoteAddr().String()))
 
@@ -39,14 +38,12 @@ func StartServer() {
 	newConfig, err := getConfig()
 	port := fmt.Sprintf(":%d", newConfig.port)
 	host := newConfig.host
-
 	logger.Info(fmt.Sprintf("running server on port %s on %s", port, host))
 
 	l, err := net.Listen("tcp4", ":5000")
 	if err != nil {
 		logger.Error(fmt.Sprintf("failed to listen for connections on %s", port))
 	}
-
 	defer l.Close()
 
 	for {

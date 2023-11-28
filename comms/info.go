@@ -7,6 +7,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// TODO dependancy injection this for
 type config struct {
 	port int    `yaml:"port"`
 	host string `yaml:"host"`
