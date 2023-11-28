@@ -9,7 +9,7 @@ import (
 var logger *zap.Logger
 
 type MessageQueue interface {
-	addMessagetoQueue(message string)
+	AddMessagetoQueue(message string)
 	RecieveMessage() string
 }
 
@@ -23,7 +23,7 @@ type messageQueueImpl struct {
 	ch chan string
 }
 
-func (m *messageQueueImpl) addMessagetoQueue(message string) {
+func (m *messageQueueImpl) AddMessagetoQueue(message string) {
 	m.ch <- message
 }
 

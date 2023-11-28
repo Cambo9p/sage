@@ -7,5 +7,5 @@ import (
 
 func main() {
 	mq := event.NewMessageQueue()
-	comms.StartServer()
+	comms.StartServer(mq)
 }
