@@ -1,19 +1,30 @@
 package event
 
 // the main idea of this package is a message queue struct (dependancy injection for later testing) that will hold the current
-// command events, for example if a user
+// command events.
+// the message queue impl usues dependancy injection so that we split up the reading and writing methods as theyre never used in the same instance
+
 import (
 	"go.uber.org/zap"
 )
 
 var logger *zap.Logger
 
-type MessageQueue interface {
-	AddMessagetoQueue(message string)
+type MessageQueueReader interface {
 	RecieveMessage() string
 }
 
-func NewMessageQueue() MessageQueue {
+type MessageQueueWriter interface {
+	AddMessagetoQueue(message string)
+}
+
+func NewMessageQueueReader() MessageQueueReader {
+	return &messageQueueImpl{
+		ch: make(chan string),
+	}
+}
+
+func NewMessageQueueWriter() MessageQueueReader {
 	return &messageQueueImpl{
 		ch: make(chan string),
 	}

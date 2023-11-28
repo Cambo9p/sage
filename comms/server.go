@@ -14,7 +14,7 @@ import (
 var logger *zap.Logger
 
 // gets called when there is a voice connection -- when the server recieves a package from the client
-func handleConnection(c net.Conn, mq event.MessageQueue) {
+func handleConnection(c net.Conn, mqw event.MessageQueueWriter) {
 	logger.Info(fmt.Sprintf("Serving %s\n", c.RemoteAddr().String()))
 
 	scanner := bufio.NewScanner(c)
@@ -29,7 +29,7 @@ func handleConnection(c net.Conn, mq event.MessageQueue) {
 
 		// TODO add the message to the message queue -- currently we just send all of the
 		// incoming traffic to the queue but we need to filter in the future
-		mq.AddMessagetoQueue(line)
+		mqw.AddMessagetoQueue(line)
 
 		// check if the key words were said and then create an event
 
@@ -38,7 +38,7 @@ func handleConnection(c net.Conn, mq event.MessageQueue) {
 }
 
 // TODO refactor to smaller methods?
-func StartServer(mq event.MessageQueue) {
+func StartServer(mqw event.MessageQueueWriter) {
 	logger = logging.NewLogger("comms")
 	logger.Info("starting server")
 
@@ -58,7 +58,7 @@ func StartServer(mq event.MessageQueue) {
 		if err != nil {
 			logger.Error("failed to accept connections on")
 		}
-		go handleConnection(c, mq)
+		go handleConnection(c, mqw)
 	}
 
 }
