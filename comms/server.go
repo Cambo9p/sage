@@ -7,14 +7,14 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/Cambo9p/sage/event"
+	"github.com/Cambo9p/sage/pipeline"
 	logging "github.com/Cambo9p/sage/util/logger"
 )
 
 var logger *zap.Logger
 
 // gets called when there is a voice connection -- when the server recieves a package from the client
-func handleConnection(c net.Conn, mqw event.MessageQueueWriter) {
+func handleConnection(c net.Conn, pipe pipeline.Pipeline) {
 	logger.Info(fmt.Sprintf("Serving %s\n", c.RemoteAddr().String()))
 
 	scanner := bufio.NewScanner(c)
@@ -29,7 +29,7 @@ func handleConnection(c net.Conn, mqw event.MessageQueueWriter) {
 
 		// TODO add the message to the message queue -- currently we just send all of the
 		// incoming traffic to the queue but we need to filter in the future
-		mqw.AddMessagetoQueue(line)
+		pipe.AddMessageToPipeline(line)
 
 		// check if the key words were said and then create an event
 
@@ -38,7 +38,7 @@ func handleConnection(c net.Conn, mqw event.MessageQueueWriter) {
 }
 
 // TODO refactor to smaller methods?
-func StartServer(mqw event.MessageQueueWriter) {
+func StartServer(pipe pipeline.Pipeline) {
 	logger = logging.NewLogger("comms")
 	logger.Info("starting server")
 
@@ -58,7 +58,7 @@ func StartServer(mqw event.MessageQueueWriter) {
 		if err != nil {
 			logger.Error("failed to accept connections on")
 		}
-		go handleConnection(c, mqw)
+		go handleConnection(c, pipe)
 	}
 
 }
