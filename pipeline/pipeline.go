@@ -37,3 +37,8 @@ func (p *pipelineImpl) AttachServiceReader(ser service.Service) {
 		}
 	}()
 }
+
+func (p *pipelineImpl) Close() {
+	close(p.channel)
+	p.wg.Wait()
+}
