@@ -25,16 +25,8 @@ func handleConnection(c net.Conn, pipe pipeline.Pipeline) {
 		line := scanner.Text()
 		fmt.Printf(line)
 
-		// words := strings.Fields(line)
-
-		// TODO add the message to the message queue -- currently we just send all of the
-		// incoming traffic to the queue but we need to filter in the future
 		pipe.AddMessageToPipeline(line)
-
-		// check if the key words were said and then create an event
-
 	}
-
 }
 
 // TODO refactor to smaller methods?

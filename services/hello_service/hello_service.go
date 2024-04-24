@@ -13,5 +13,5 @@ func NewHelloService() *HelloService {
 }
 
 func (h *HelloService) Listen(message string) {
-	fmt.Printf("you said %s ")
+	fmt.Printf("you said %s ", message)
 }

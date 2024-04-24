@@ -28,6 +28,8 @@ func (m *pipelineImpl) AddMessageToPipeline(message string) {
 	m.channel <- message
 }
 
+// each service gets a goroutine to listen to the message queue
+// at each event the services listen func is called
 func (p *pipelineImpl) AttachServiceReader(ser service.Service) {
 	p.wg.Add(1)
 	go func() {

@@ -7,7 +7,7 @@ type Service interface {
 	Listen(string)
 }
 
-// maybe read from yml file to get the services
+// TODO: maybe read from yml file to get the services
 func GetAllServices() []Service {
 	services := make([]Service, 0)
 
