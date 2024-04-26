@@ -30,6 +30,8 @@ func handleConnection(c net.Conn, pipe pipeline.Pipeline) {
 }
 
 // TODO refactor to smaller methods?
+// TODO remove pipeline dependancy since we will communicate 
+// over a channel with the filter
 func StartServer(pipe pipeline.Pipeline) {
 	logger = logging.NewLogger("comms")
 	logger.Info("starting server")
