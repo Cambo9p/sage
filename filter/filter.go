@@ -46,7 +46,7 @@ func (f *filterImpl) Start() {
     for {
         select {
         case msg := <- f.c:
-            if msg == "hello" {
+            if msg == "hello" { // TODO: use yaml config
                  go f.parseConnection()
             }
         case <- f.stop:
