@@ -1,12 +1,8 @@
 package filter
 
 import (
-	"go.uber.org/zap"
 	pipeline "github.com/Cambo9p/sage/pipeline"
-    logging "github.com/Cambo9p/sage/util/logger"
 )
-
-var logger *zap.Logger
 
 // the Filter will recieve the incoming messages
 // and listen for the keyword, then it will wait
@@ -14,6 +10,7 @@ var logger *zap.Logger
 // the pipeline
 type Filter interface {
     Start()
+    Stop()
 }
 	
 // filterImpl takes a channel to recieve 
@@ -23,19 +20,41 @@ type Filter interface {
 type filterImpl struct {
     pl pipeline.Pipeline
     c chan string
+    stop chan struct{} // TODO: is this the best way to do this?
 }
 
 func NewFilter(c chan string, pl pipeline.Pipeline) Filter {
 	return &filterImpl{
         c: c, 
         pl: pl,
+        stop: make(chan struct{}),
 	}
 }
 
+func (f *filterImpl) parseConnection() {
+    message := ""
+    // TODO: buffer so that we can get the next words said
+    f.pl.AddMessageToPipeline(message)
+}
+
 // the server will send its message to the via a channel
-func (m *filterImpl) Start() {
-	logger = logging.NewLogger("comms")
-	logger.Info("starting filter")
+// if the stop channel recieves a struct then we exit
+func (f *filterImpl) Start() {
     // 1) wait until the key is Recieved
     // 2) buffer till we have enough context
+
+    for {
+        select {
+        case msg := <- f.c:
+            if msg == "hello" {
+                 go f.parseConnection()
+            }
+        case <- f.stop:
+            return
+        }
+    }
+}
+
+func (f *filterImpl) Stop() {
+    close(f.stop)
 }
